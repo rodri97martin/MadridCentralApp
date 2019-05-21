@@ -52,6 +52,7 @@ class ExistingResident extends React.Component {
   constructor(props, context) {
     super(props);
     this.contracts = context.drizzle.contracts;
+    
   }
 
   render() {
@@ -71,11 +72,11 @@ class ExistingResident extends React.Component {
       email = <ContractData contract={this.props.direccion} method="getEmail" />
       code = <ContractData contract={this.props.direccion} method="getCode" />
       phone = <ContractData contract={this.props.direccion} method="getPhone" />
-      price = <ContractData contract={this.props.direccion} method="getPrice" />
+      price = <ContractData contract={this.props.direccion} method="getPrice"/>
       invitations = <ContractData contract={this.props.direccion} method="getInvitations" />
 
     }
-
+       
     return (
       <div className="tableContent">
         <br></br>
@@ -87,7 +88,7 @@ class ExistingResident extends React.Component {
               <th>Email</th>
               <th>Código</th>
               <th>Teléfono</th>
-              <th>Precio</th>
+              <th>Precio(finney)</th>
               <th>Nº de invitaciones</th>
             </tr>
           </thead>

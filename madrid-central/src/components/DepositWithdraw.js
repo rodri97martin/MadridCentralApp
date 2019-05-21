@@ -20,7 +20,7 @@ class DepositWithdraw extends React.Component {
 		    	<Col>
 		    		<Row>
 						<Card style={{ width: '30rem'}}>
-							<label>Ingresar</label>
+							<label>Ingresar (finney) </label>
 							<InputGroup className="mb-3" onChange={evt => this.updateInputValue(evt)}>
 			    				<FormControl
 			      					placeholder="Introduce una cantidad"
@@ -69,7 +69,7 @@ class DepositWithdraw extends React.Component {
 
 	updateInputValue(evt) {
 	    this.setState({
-	      inputValue: evt.target.value
+	      inputValue: evt.target.value * 1000000000000000
 	    });
   	}
 }

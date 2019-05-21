@@ -48,14 +48,14 @@ class Edit extends React.Component {
   						</InputGroup>
 	  				<Row>
 	  					<Col>
-	  						<label>Precio(wei)</label>
+	  						<label>Precio(finney)</label>
 							<InputGroup className="mb-3" onChange={evt => this.updatePrice(evt)}>
 		    					<Form.Control as="select" type="number">
-							    	<option>1000</option>
-							    	<option>2000</option>
-							    	<option>3000</option>
-							    	<option>4000</option>
-							    	<option>5000</option>
+							    	<option>5</option>
+							    	<option>10</option>
+							    	<option>15</option>
+							    	<option>20</option>
+							    	<option>25</option>
 							    </Form.Control>
 	  						</InputGroup>
 	  					</Col>
@@ -121,7 +121,7 @@ class Edit extends React.Component {
 
   	updatePrice(evt) {
 	    this.setState({
-	      price: parseInt(evt.target.value)
+	      price: parseInt(evt.target.value) * 1000000000000000
 	    });
   	}
 

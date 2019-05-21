@@ -1,7 +1,7 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { drizzleConnect } from "drizzle-react";
 import ExistingResident from "./ExistingResident";
+import NewResident from "./NewResident";
 import PropTypes from "prop-types";
 
 
@@ -29,9 +29,7 @@ class Resident extends React.Component {
 	    }
 
 		var resident = this.props.MadridCentral["getResidentAddress"][this.state.dataKey2].value;
-		console.log(resident);
-		console.log(this);
-
+	
 
 		if (exisistingResident.value) {
 			return (
@@ -43,7 +41,7 @@ class Resident extends React.Component {
 		} else {
 			return (
 				<div>
-					<Redirect to="/newResident" />
+					<NewResident/>
 				</div>
 
 			);

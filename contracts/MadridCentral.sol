@@ -14,7 +14,7 @@ contract MadridCentral {
     mapping (address => Resident) public residents;
     mapping (uint => Day) public dayContracts;
     mapping (address => uint) private balances;
-    uint[] public prices = [1000, 2000, 3000, 4000, 5000];
+    uint[] public prices = [5000000000000000, 10000000000000000, 15000000000000000, 20000000000000000, 25000000000000000];
     
     // temporales
     mapping (uint => Resident[]) private invitationsPerPrice;
@@ -37,8 +37,8 @@ contract MadridCentral {
         require(address(residents[msg.sender]) == address(0x0));
         Resident resident = new Resident(initialPrice, msg.sender, name, email, code, phone, n_invitations );
         residents[msg.sender] = resident;
-        invitationsPerResident[address(resident)] = 1;
-        newResidents.push(NewResident(prices[0], 0, 1, address(resident), true));
+        invitationsPerResident[address(resident)] = n_invitations;
+        newResidents.push(NewResident(initialPrice, 0, n_invitations, address(resident), true));
     }
     
     function changeResidentData(string memory name, string memory email, uint phone, uint newPrice, uint nInvitations) public {
@@ -117,6 +117,7 @@ contract MadridCentral {
     }
     
     function getInvitation(uint day, string memory matricula) public {
+        require(balances[msg.sender] >= prices[4], "Debes disponer del saldo suficiente para pagar el precio más caro.");
         if (day == currentDay) {
             if (lookForResident()) {
                 Resident resident = invitationsPerPrice[prices[price]][index];
@@ -139,15 +140,20 @@ contract MadridCentral {
             }
         }
     }
-    
+
     function newDaySettings() public {
         for (uint i = 0; i < 5; i++) {
             lengths[i] = invitationsPerPrice[prices[i]].length;
-            pointers[i] = 0;
+            pointers[i] = block.timestamp;
         }
         currentDayPriceIndex = 0;
         price = 0;
         index = 0;
+    }
+    
+    function getInvitationFromDay(uint day) public view returns (string memory) {
+        Day searchedDay = dayContracts[day];
+        return searchedDay.getTodayInvitation(msg.sender);
     }
     
     function generateNewDay(uint day) public {
@@ -184,8 +190,10 @@ contract Day {
         Resident resident;
         string matricula;
     }
-    
+    //direccion del residente
     mapping (address => uint) private spentInvitations;
+
+    //direccion personal
     mapping (address => Invitation) public invitations;
     
     function newInvitation(address sender, string memory matricula, Resident resident) public {

@@ -24,7 +24,7 @@ const Home = () => {
 				</p>
 				
 				<p>
-					Más información sobre Madrid Central: <a href="https://www.madrid.es/portales/munimadrid/es/Inicio/Movilidad-y-transportes/Madrid-Central-Zona-de-Bajas-Emisiones/Informacion-general/Madrid-Central-Informacion-General/?vgnextfmt=default&vgnextoid=a67cda4581f64610VgnVCM2000001f4a900aRCRD&vgnextchannel=088e96d2742f6610VgnVCM1000001d4a900aRCRD">Ayuntamiendo de Madrid</a>
+					Más información sobre Madrid Central: <a href="https://www.madrid.es/portales/munimadrid/es/Inicio/Movilidad-y-transportes/Madrid-Central-Zona-de-Bajas-Emisiones/Informacion-general/Madrid-Central-Informacion-General/?vgnextfmt=default&vgnextoid=a67cda4581f64610VgnVCM2000001f4a900aRCRD&vgnextchannel=088e96d2742f6610VgnVCM1000001d4a900aRCRD">Ayuntamiento de Madrid</a>
 				</p>
 			</Card>
 		</div>

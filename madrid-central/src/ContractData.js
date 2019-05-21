@@ -113,6 +113,14 @@ class ContractData extends Component {
       return <ul>{displayObjectProps}</ul>;
     }
 
+    if (this.props.method == "getPrice") {
+      return (
+        <span>
+          {`${displayData/1000000000000000}`}
+          {pendingSpinner}
+        </span>
+      );
+    }
     return (
       <span>
         {`${displayData}`}

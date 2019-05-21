@@ -4,12 +4,12 @@ import { drizzleConnect } from 'drizzle-react';
 
 import Home from './components/Home';
 import Resident from './components/Resident';
-import NewResident from './components/NewResident';
 import Guest from './components/Guest';
 import Error from './components/Error';
 import Navigation from './components/Navigation'; 
 import DepositWithdraw from './components/DepositWithdraw';
 import Edit from './components/Edit';
+import History from './components/History';
 
 class Router extends React.Component {
 
@@ -23,8 +23,8 @@ class Router extends React.Component {
             <Route path="/resident" component={Resident} />
             <Route path="/guest" component={Guest} />
             <Route path="/edit" component={Edit} />
-            <Route path="/newResident" component={NewResident} />
             <Route path="/depositWithdraw" component={DepositWithdraw} />
+            <Route path="/history" component={History} />
             <Route component={Error} />
           </Switch>
         </div>

@@ -30,9 +30,10 @@ class Navigation extends React.Component {
             <Nav.Link href="/resident">Soy un residente</Nav.Link>
             <Nav.Link href="/guest">Quiero una invitación</Nav.Link>
             <Nav.Link href="/depositWithdraw">Ingresar/Retirar</Nav.Link>
+            <Nav.Link href="/history">Historial</Nav.Link>
           </Nav>
           <Navbar.Text>
-            Saldo: {balance} wei
+            Saldo: {balance/1000000000000000} finney
           </Navbar.Text>
         </Navbar.Collapse>
       </Navbar>

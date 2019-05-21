@@ -1,6 +1,4 @@
 import React from 'react';
-import ContractForm from "../ContractForm";
-import ContractData from "../ContractData";
 import PropTypes from 'prop-types';
 import ActualDay from './ActualDay';
 import { drizzleConnect } from "drizzle-react";
@@ -32,7 +30,7 @@ class Guest extends React.Component {
 
 	    var actualDay = this.props.MadridCentral["currentDay"][this.state.dataKey2].value;
 
-		if (actualDay == 0) {
+		if (parseInt(actualDay) === 0) {
 			return (
 				<div>
 					<br></br>
@@ -72,7 +70,8 @@ class Guest extends React.Component {
 
 	onClick() {
 		var timestamp = Math.floor(new Date().getTime() / (1000 * 60 * 60 * 24));
-		this.drizzle.contracts.MadridCentral.methods.getInvitation.cacheSend(timestamp, this.state.matricula, {from: this.props.accounts[0]})
+		console.log(timestamp);
+		this.drizzle.contracts.MadridCentral.methods.getInvitation.cacheSend(timestamp, this.state.matricula, {from: this.props.accounts[0]});
 	}
 }
 
