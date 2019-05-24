@@ -11,26 +11,30 @@ contract MadridCentral {
     }
     
     // permanentes
-    mapping (address => Resident) public residents;
-    mapping (uint => Day) public dayContracts;
+    mapping (address => Resident) private residents;
+    mapping (uint => Day) private dayContracts;
     mapping (address => uint) private balances;
-    uint[] public prices = [5000000000000000, 10000000000000000, 15000000000000000, 20000000000000000, 25000000000000000];
+    uint[] private prices = [5000000000000000, 10000000000000000, 15000000000000000, 20000000000000000, 25000000000000000];
     
     // temporales
     mapping (uint => Resident[]) private invitationsPerPrice;
-    NewResident[] public newResidents;
-    uint public currentDay = 0;
-    uint[5] public pointers;
-    uint[5] public lengths;
-    uint public currentDayPriceIndex = 0;
+    NewResident[] private newResidents;
+    uint private currentDay = 0;
+    uint[5] private pointers;
+    uint[5] private lengths;
+    uint private currentDayPriceIndex = 0;
     mapping (address => uint) private invitationsPerResident;
     
     //solo para el metodo 
-    uint public price;
-    uint public index;
+    uint private price;
+    uint private index;
     
     function getInvitationsForPrice(uint p) public view returns (Resident[] memory){
         return invitationsPerPrice[p];
+    }
+
+    function getCurrentDay() public view returns (uint) {
+        return currentDay;
     }
     
     function addResident(uint initialPrice, string memory name, string memory email, string memory code, uint phone, uint n_invitations) public {
@@ -155,6 +159,11 @@ contract MadridCentral {
         Day searchedDay = dayContracts[day];
         return searchedDay.getTodayInvitation(msg.sender);
     }
+
+    function getInvitationFromToday() public view returns (string memory) {
+        Day searchedDay = dayContracts[currentDay];
+        return searchedDay.getTodayInvitation(msg.sender);
+    }
     
     function generateNewDay(uint day) public {
         currentDay = day;
@@ -194,7 +203,7 @@ contract Day {
     mapping (address => uint) private spentInvitations;
 
     //direccion personal
-    mapping (address => Invitation) public invitations;
+    mapping (address => Invitation) private invitations;
     
     function newInvitation(address sender, string memory matricula, Resident resident) public {
         invitations[sender] = Invitation(resident, matricula);

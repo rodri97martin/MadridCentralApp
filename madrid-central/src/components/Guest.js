@@ -11,7 +11,8 @@ class Guest extends React.Component {
 		this.drizzle = context.drizzle;
 		this.state = {
       		dataKey: this.drizzle.contracts["MadridCentral"].methods["getTodayAddress"].cacheCall(),
-      		dataKey2: this.drizzle.contracts["MadridCentral"].methods["currentDay"].cacheCall(),
+      		dataKey2: this.drizzle.contracts["MadridCentral"].methods["getCurrentDay"].cacheCall(),
+      		dataKey3: this.drizzle.contracts["MadridCentral"].methods["getInvitationFromToday"].cacheCall(),
       		matricula:""
     	};
 	}
@@ -24,13 +25,21 @@ class Guest extends React.Component {
 
 		var actualDayAddress = this.props.MadridCentral["getTodayAddress"][this.state.dataKey].value;
 
-		if (!(this.state.dataKey2 in this.props.MadridCentral.currentDay)) {
+		if (!(this.state.dataKey2 in this.props.MadridCentral.getCurrentDay)) {
 	      return <span>Fetching...</span>;
 	    }
 
-	    var actualDay = this.props.MadridCentral["currentDay"][this.state.dataKey2].value;
+	    var actualDay = this.props.MadridCentral["getCurrentDay"][this.state.dataKey2].value;
 
-		if (parseInt(actualDay) === 0) {
+	    if (!(this.state.dataKey3 in this.props.MadridCentral.getInvitationFromToday)) {
+	      return <span>Fetching...</span>;
+	    }
+
+	    var actualInvitation = this.props.MadridCentral["getInvitationFromToday"][this.state.dataKey3].value;
+
+
+	    console.log(actualInvitation);
+		if (parseInt(actualDay) === 0 || actualInvitation == "") {
 			return (
 				<div>
 					<br></br>
