@@ -33,13 +33,13 @@ npm install
 Una vez instalado, el siguiente paso es compilar los contratos usando Truffle:
 
 ```
-npx truffle compile –all
+npx truffle compile --all
 ```
 
 Para poder desplegar los contratos en la red es necesario abrir la aplicación de Ganache y ejecutar el siguiente comando:
 
 ```
-npx truffle migrate –reset
+npx truffle migrate --reset
 ```
 
 Una vez ejecutado, será necesario entrar en el directorio de la aplicación web:
