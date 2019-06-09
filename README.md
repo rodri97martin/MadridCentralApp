@@ -44,7 +44,7 @@ truffle migrate –reset
 
 Una vez ejecutado, será necesario entrar en el directorio de la aplicación web:
 
-
+```
 cd madrid-central/src
 ```
 
